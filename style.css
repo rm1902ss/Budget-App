@@ -1,0 +1,88 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Khula', sans-serif;
+    height: 100vh;
+    width: 100vw;
+    background-color: #3A2E39;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.budget-container {
+    position: relative;
+    width: 500px;
+    height: 700px;
+    background-color: #1E555C;
+}
+
+.app-title {
+    color: white;
+    font-size: 1rem;
+    margin: 2rem 1rem;
+}
+
+.budget-header {
+    color: white;
+}
+
+.balance {
+    margin: 1rem;
+}
+
+.account {
+    display: flex;
+    justify-content: space-around;
+}
+
+.budget-dashboard {
+    position: absolute;
+    height: 65%;
+    width: 100%;
+    bottom: 0;
+    background-color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.dash-title {
+    margin: 1rem;
+}
+
+.toggle {
+    margin: 1rem;
+    display: flex;
+}
+
+.active {
+    opacity: 1 !important;
+}
+
+.hide {
+    display: none;
+}
+
+.list .income {
+    display: flex;
+}
+
+.list .expense {
+    display: flex;
+}
+
+.list .all {
+    display: flex;
+}
+
+.input {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    border-top: 2px solid gray;
+    display: flex;
+}
