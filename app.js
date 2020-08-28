@@ -119,7 +119,7 @@ function calculateBalance(income, outcome) {
 
 function showEntry(list, type, title, amount, id) {
     const entry = `<li id="${id}" class="${type}">
-                        <div class="entry">${title} : $${amount}</div>
+                        <div class="entry">${title}: $${amount}</div>
                         <div id="edit"><i class="fas fa-edit"></i></div>
                         <div id="delete"><i class="fas fa-trash"></i></div>
                     </li>`
