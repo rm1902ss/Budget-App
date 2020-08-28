@@ -23,7 +23,7 @@ const incomeTitle = document.querySelector('#income-title-input')
 const incomeAmount = document.querySelector('#income-amount-input')
 const addIncome = document.querySelector('.add-income')
 
-let ENRTY_LIST = []
+let ENTRY_LIST
 
 expenseBtn.addEventListener('click', () => {
     active(expenseBtn)
@@ -53,7 +53,7 @@ addIncome.addEventListener('click', () => {
         title: incomeTitle.value,
         amount: parseFloat(incomeAmount.value),
     }
-    ENRTY_LIST.push(income)
+    ENTRY_LIST.push(income)
     updateUI()
     clearInput([incomeTitle, incomeAmount])
 })
@@ -65,7 +65,7 @@ addExpense.addEventListener('click', () => {
         title: expenseTitle.value,
         amount: parseFloat(expenseAmount.value),
     }
-    ENRTY_LIST.push(expense)
+    ENTRY_LIST.push(expense)
     updateUI()
     clearInput([expenseTitle, expenseAmount])
 })
@@ -73,6 +73,9 @@ addExpense.addEventListener('click', () => {
 incomeList.addEventListener('click', deleteOrEdit)
 expenseList.addEventListener('click', deleteOrEdit)
 allList.addEventListener('click', deleteOrEdit)
+
+ENTRY_LIST = JSON.parse(localStorage.getItem("entry_list")) || []
+updateUI()
 
 function active(element) {
     element.classList.add('active')
@@ -100,9 +103,9 @@ function clearInput(inputsArray) {
     })
 }
 
-function calculateTotal(type, ENRTY_LIST) {
+function calculateTotal(type, ENTRY_LIST) {
     let sum = 0
-    ENRTY_LIST.forEach(entry => {
+    ENTRY_LIST.forEach(entry => {
         if(entry.type == type) {
             sum += entry.amount
         }
@@ -125,8 +128,8 @@ function showEntry(list, type, title, amount, id) {
 }
 
 function updateUI() {
-    income = calculateTotal("income", ENRTY_LIST)
-    outcome = calculateTotal("expense", ENRTY_LIST)
+    income = calculateTotal("income", ENTRY_LIST)
+    outcome = calculateTotal("expense", ENTRY_LIST)
     balance = Math.abs(calculateBalance(income, outcome))
 
     let sign = (income >= outcome) ? "$" : "-$"
@@ -137,7 +140,7 @@ function updateUI() {
 
     clearElement([incomeList, expenseList, allList])
 
-    ENRTY_LIST.forEach((entry, index) => {
+    ENTRY_LIST.forEach((entry, index) => {
         if(entry.type == "income") {
             showEntry(incomeList, entry.type, entry.title, entry.amount, index)
         } else if (entry.type == "expense") {
@@ -145,7 +148,7 @@ function updateUI() {
         }
         showEntry(allList, entry.type, entry.title, entry.amount, index)
     })
-
+    localStorage.setItem("entry_list", JSON.stringify(ENTRY_LIST))
 }
 
 function clearElement(elementsArray) {
@@ -155,20 +158,20 @@ function clearElement(elementsArray) {
 }
 
 function deleteEntry(ENTRY) {
-    ENRTY_LIST.splice(ENTRY.id, 1)
-    updateUI
+    ENTRY_LIST.splice(ENTRY.id, 1)
+    updateUI()
 }
 
-function editEntry(ENTRY) {
-    let entry = ENRTY_LIST[ENTRY.id]
-    if(entry.type == "income") {
-        incomeAmount.value = entry.amount
-        incomeTitle.value = entry.title
-    } else if (entry.type = "expense") {
-        expenseAmount.value = entry.amount
-        expenseTitle.value = entry.title
+function editEntry(ENTRY){
+    let entry = ENTRY_LIST[ENTRY.id];
+    if(entry.type == "income"){
+        incomeAmount.value = entry.amount;
+        incomeTitle.value = entry.title;
+    }else if(entry.type == "expense"){
+        expenseAmount.value = entry.amount;
+        expenseTitle.value = entry.title;
     }
-    deleteEntry(ENTRY)
+    deleteEntry(ENTRY);
 }
 
 function deleteOrEdit(event) {
@@ -179,6 +182,5 @@ function deleteOrEdit(event) {
     } else if (targetBtn.className == "fas fa-edit") {
         editEntry(ENTRY)
     }
-    console.log(event)
 }
 

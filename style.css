@@ -79,6 +79,10 @@ body {
     display: flex;
 }
 
+#all #edit {
+    visibility: hidden;
+}
+
 .input {
     position: absolute;
     width: 100%;
