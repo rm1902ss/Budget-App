@@ -1,7 +1,6 @@
 const balanceEl = document.querySelector('.balance .value')
 const incomeTotalEl = document.querySelector('.income-total')
 const outcomeTotalEl = document.querySelector('.outcome-total')
-const chartEl = document.querySelector('.chart')
 
 const expenseBtn = document.querySelector('.tab1')
 const incomeBtn = document.querySelector('.tab2')
@@ -149,6 +148,8 @@ function updateUI() {
         showEntry(allList, entry.type, entry.title, entry.amount, index)
     })
     localStorage.setItem("entry_list", JSON.stringify(ENTRY_LIST))
+
+    updateChart(income, outcome)
 }
 
 function clearElement(elementsArray) {
@@ -183,4 +184,3 @@ function deleteOrEdit(event) {
         editEntry(ENTRY)
     }
 }
-

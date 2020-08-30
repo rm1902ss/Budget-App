@@ -44,7 +44,8 @@ body {
 }
 
 .balance .title {
-    font-size: 2rem;
+    font-size: 1.6rem;
+    font-weight: bold;
 }
 
 .balance .value {
@@ -90,7 +91,7 @@ body {
 
 .dash-title {
     color: #1a0034;
-    font-size: 1.6rem;
+    font-size: 3rem;
     font-weight: bold;
     margin-top: 2rem;
     margin-left: 2rem;
@@ -99,14 +100,17 @@ body {
 .toggle {
     margin-top: 2rem;
     margin-left: 2rem;
+    margin-bottom: 1rem;
     font-size: 2rem;
+    font-weight: bold;
     display: flex;
-    cursor: pointer;
     color: #1a0034;
 }
 
 .tab1, .tab2, .tab3 {
+    cursor: pointer;
     margin-right: 2rem;
+    opacity: 0.5;
     transition: all 0.2s ease-in-out;
 }
 
@@ -151,7 +155,7 @@ body {
 }
 
 .expense {
-    color: #f0624d;
+    color: #F0386B;
 }
 
 .input {
@@ -198,7 +202,7 @@ input[type=number] {
 
 #all, #income, #expense {
     overflow: auto;
-    height: 60%;
+    height: 50%;
 }
 
 ::-webkit-scrollbar {
